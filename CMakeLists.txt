@@ -20,13 +20,17 @@ add_library(alphabot
   ${LIBSRC}
   )
 
-add_library(ov obstacle-avoid/control.cpp)
-
 set_target_properties(alphabot PROPERTIES
   POSITION_INDEPENDENT_CODE TRUE
   PUBLIC_HEADER "${LIBINCLUDE}")
 
 target_link_libraries(alphabot pigpio rt)
+
+add_library(ov obstacle-avoid/control.cpp)
+
+set_target_properties(ov PROPERTIES
+  POSITION_INDEPENDENT_CODE TRUE
+  PUBLIC_HEADER obstacle-avoid/control.h)
 
 install(TARGETS alphabot EXPORT alphabot-targets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
