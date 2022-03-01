@@ -12,6 +12,8 @@ add_compile_options(-Wall)
 
 find_package (Curses)
 
+add_subdirectory(obstacle-avoid)
+
 set(LIBSRC alphabot.cpp)
 set(LIBINCLUDE alphabot.h)
 
@@ -39,3 +41,6 @@ target_link_libraries(testMotor alphabot ncurses rt)
 
 add_executable (obstacleAvoid obstacleAvoid.cpp)
 target_link_libraries(obstacleAvoid alphabot ncurses rt)
+
+add_executable (testAvoid testAvoid.cpp)
+target_link_libraries(testAvoid alphabot obstacle-avoid)
