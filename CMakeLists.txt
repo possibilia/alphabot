@@ -12,8 +12,6 @@ add_compile_options(-Wall)
 
 find_package (Curses)
 
-add_subdirectory(obstacle-avoid)
-
 set(LIBSRC alphabot.cpp)
 set(LIBINCLUDE alphabot.h)
 
@@ -21,6 +19,8 @@ add_library(alphabot
   STATIC
   ${LIBSRC}
   )
+
+add_library(ov obstacle-avoid/control.cpp)
 
 set_target_properties(alphabot PROPERTIES
   POSITION_INDEPENDENT_CODE TRUE
@@ -43,4 +43,4 @@ add_executable (obstacleAvoid obstacleAvoid.cpp)
 target_link_libraries(obstacleAvoid alphabot ncurses rt)
 
 add_executable (testAvoid testAvoid.cpp)
-target_link_libraries(testAvoid alphabot obstacle-avoid)
+target_link_libraries(testAvoid alphabot ov)
